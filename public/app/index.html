@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Cheng Kang Bingo</title>
+    <title>Let's Play Bingo</title>
 
     <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
@@ -28,6 +28,7 @@
     <div id="content-wrapper">
         <div style="height: 300px;" class="text-white mx-auto text-center">
             <div class="" style="height: 100px;"></div>
+            <a href="#" onclick="logout()" class="btn btn-primary">Logout</a>
             <div id="sectionPhase1">
                 <h3> Hi! <span id="userName"></span> Are you ready ? </h3>
                 <a class="btn btn-primary" onclick="init(50)"> YES </a>
