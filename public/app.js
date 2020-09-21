@@ -32,5 +32,6 @@ if ((firebase.auth().isSignInWithEmailLink(window.location.href))) {
 }
 
 firebase.auth().onAuthStateChanged(user => {
-    if (user) { window.location.href = "app/index.html"; }
+    if (user) { localStorage.setItem('userID', user.uid);
+        window.location.href = "app/index.html"; }
 });
