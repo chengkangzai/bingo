@@ -3,50 +3,63 @@ particleJS()
 makeFloatOnParticle("content-wrapper");
 $("#sectionPhase1").hide();
 $("#sectionPhase2").hide();
+$("#sectionPhase3").hide();
 
 var selection = [];
 var userID = localStorage.getItem('userID');
+var userName;
 var docID;
 var board = [];
 var bingoCol = [];
+var timestamp = new Date().getTime()
+    // var timestamp = new Date().getTime()
 for (var selection = [], i = 0; i < 40; ++i) selection[i] = i;
 
 
 firebase.auth().onAuthStateChanged(user => {
-    (user) ? $("#userName").text(user.displayName + " ,"): window.location.href = "../index.html";
+    if (user) {
+        userName = user.displayName;
+        $(".userName").text(`${userName},`);
+    } else {
+        window.location.href = "../index.html";
+    }
 });
 
 db
-    .doc(`user/${userID}`)
+    .doc(`users/${userID}`)
     .onSnapshot(doc => {
-        bingoCol = doc.data().bingoCollection;
-        $("#bingoNumber").text(bingoCol.length || "0")
+        if (doc.exists && doc.data().bingoCollection) {
+            bingoCol = doc.data().bingoCollection;
+            $("#bingoNumber").text(bingoCol.length)
+        } else {
+            $("#bingoNumber").text("0")
+        }
     })
 
 db
-    .collection(`user/${userID}/board/`)
+    .collection(`users/${userID}/board/`)
     .onSnapshot(function(snap) {
-        if (snap.empty) { $("#sectionPhase1").show() }
+        (snap.empty) ? $("#sectionPhase1").show(): $("#sectionPhase3").show();
         snap.forEach(doc => {
             board = doc.data().board;
+            var localBoard = doc.data().board;
             docID = doc.id;
 
-            for (let key in board) {
-                if (board.hasOwnProperty(key)) {
-                    const element = board[key];
+            for (let key in localBoard) {
+                if (localBoard.hasOwnProperty(key)) {
+                    const element = localBoard[key];
                     // console.log(element)
                     if (element.taken) {
                         $(`#square${element.index}`).replaceWith(`<td id="square${element.index}" class="bg-success"></td>`);
                         $(`#square${element.index}`).append(`
-                                            <a href="#" onclick="recordToDB(this.id)" id="btnNumber${element.index}" class="btn btn-success">${element.number}</a>`);
+                                            <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${element.index}" class="btn btn-success">${element.number}</a>`);
                     } else {
                         $(`#square${element.index}`).replaceWith(`<td id="square${element.index}"></td>`);
                         $(`#square${element.index}`).append(`
-                                            <a href="#" onclick="recordToDB(this.id)" id="btnNumber${element.index}" class="btn btn-primary">${element.number}</a>`);
+                                            <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${element.index}" class="btn btn-primary">${element.number}</a>`);
                     }
                 }
             }
-
             checkBingo();
         })
     });
@@ -74,12 +87,12 @@ function init(j = 0) {
         for (let i = 0; i < 25; i++) {
             $(`#square${i}`).replaceWith(`<td id="square${i}"></td>`);
             $(`#square${i}`).append(`
-                <a href="#" onclick="recordToDB(this.id)" id="btnNumber${i}" class="btn btn-primary">${selection[i]}</a>
+                <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${i}" class="btn btn-secondary" disabled>${selection[i]}</a>
             `);
 
             // $(`#square${i}`).replaceWith(`<td id="square${i}"></td>`);
             // $(`#square${i}`).append(`
-            // <a href="#" onclick="recordToDB(this.id)" id="btnNumber${i}" class="btn btn-primary">${(i - 1)}</a>
+            // <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${i}" class="btn btn-primary">${(i - 1)}</a>
             // `);
         }
         j++;
@@ -108,12 +121,15 @@ function boardLiked() {
     board = temp;
     // BLOCK if user already have it 
     db
-        .collection(`user/${userID}/board`)
+        .collection(`users/${userID}/board`)
         .add({
             userID: userID,
-            board: temp
+            board: temp,
+            timestamp: timestamp
         })
         .then((response) => {
+            $("#sectionPhase2").hide()
+            $("#sectionPhase3").show()
             console.log(response)
         })
         .catch((error) => {
@@ -122,21 +138,28 @@ function boardLiked() {
 
 }
 
-function recordToDB(id) {
+function markAsTaken(id) {
     var id = id.split("btnNumber")[1];
     board[id - 1].taken = true;
 
     db
-        .doc(`user/${userID}/board/${docID}`)
+        .doc(`users/${userID}/board/${docID}`)
         .update({
             userID: userID,
-            board: board
+            board: board,
+            timestamp: timestamp
         })
         .then(response => {
             console.log(response)
         })
         .catch(error => {
-            console.log(error)
+            //TODO check the error
+            new Modal("Warnings!", `
+            <h3 class='text-danger'>Please do not spam the database! </h3>
+            <h2 class='text-danger'>It has been marked as a spam </h2>
+            <p>You only can mark one bingo in 5 minutes </p>
+            <p>No one want to pay for the bill of query from database </p>
+            `).show()
         });
 
 }
@@ -156,7 +179,7 @@ function checkBingo() {
     var ob1bingo = (board[0].taken && board[6].taken && board[17].taken && board[23].taken) ? true : false;
     var ob2bingo = (board[4].taken && board[8].taken && board[15].taken && board[19].taken) ? true : false;
 
-    var timestamp = firebase.firestore.Timestamp.fromDate(new Date());
+
     var tempBingoCol = []
 
     if (r1bingo == true) { tempBingoCol.push({ r1bingo: r1bingo, timestamp: timestamp }) }
@@ -173,48 +196,37 @@ function checkBingo() {
     if (ob2bingo == true) { tempBingoCol.push({ ob2bingo: ob2bingo, timestamp: timestamp }) }
 
     if (r1bingo || r2bingo || r3bingo || r4bingo || r5bingo || c1bingo || c2bingo || c3bingo || c4bingo || c5bingo || ob1bingo || ob2bingo) {
-        console.log(bingoCol)
-            // if ((bingoCol.length !== tempBingoCol.length)) {
-        db
-            .doc(`user/${userID}`)
-            .set({ bingoCollection: tempBingoCol })
-            .then(doc => {
-                console.log("Update document!")
-                console.log(doc)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-            // }
+        if ((bingoCol == undefined) || (bingoCol.length !== tempBingoCol.length)) {
+            db
+                .doc(`users/${userID}`)
+                .set({ bingoCollection: tempBingoCol })
+                .then(res => {
+                    new Modal("Congrats !", `Congratulation ! You have ${tempBingoCol.length} of bingo ! 🔥🔥🔥🔥🔥`).show()
+                })
+                .catch({})
+        }
     }
 }
 
 function reset() {
-
+    //TODO
+    //Delete!
     for (let i = 0; i < board.length; i++) {
         board[i].taken = false;
     }
 
     db
-        .doc(`user/${userID}/board/${docID}`)
+        .doc(`users/${userID}/board/${docID}`)
         .update({
             userID: userID,
             board: board
         })
-        .then((response) => {
-            console.log(response)
-        })
-        .catch((error) => {
-            console.log(error)
-        });
+        .then()
+        .catch();
 
     db
-        .doc(`user/${userID}`)
+        .doc(`users/${userID}`)
         .set({})
-        .then((response) => {
-            console.log(response)
-        })
-        .catch((error) => {
-            console.log(error)
-        });
+        .then()
+        .catch();
 }

@@ -1,8 +1,20 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /user/{anything=**} {
-      allow read, write: if request.auth.uid != null;
+    match /user/{userID}/{document=**} {
+      allow read :if isLoggedIn();
+      allow write: if isOwner(userID);
+    }
+
+
+    
+    function isOwner(userID){
+      return request.auth.uid==userID && isLoggedIn();
+    } 
+
+    function isLoggedIn(){
+      return request.auth.uid != null;
     }
   }
+  
 }
