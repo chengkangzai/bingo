@@ -1,232 +1,66 @@
-// https://www.obfuscator.io/
-particleJS()
-makeFloatOnParticle("content-wrapper");
-$("#sectionPhase1").hide();
-$("#sectionPhase2").hide();
-$("#sectionPhase3").hide();
+var _0x1f73 = ['hide', '.userName', 'replaceWith', '<td\x20id=\x22square', 'set', 'permission-denied', 'addClass', 'onclick', 'append', '#sectionPhase2', '\x20of\x20bingo\x20!\x20🔥🔥🔥🔥🔥', 'getTime', 'then', 'random', 'attr', 'getItem', 'href', 'push', '/board/', 'btn-primary', 'log', 'onSnapshot', 'doc', 'data', '#sectionPhase3', '#square', 'removeClass', '\x22\x20class=\x22bg-success\x22></td>', '\x22\x20class=\x22btn\x20btn-primary\x22>', 'text', '#sp2btnNo', 'catch', 'length', '/board', 'Warnings!', '#bingoNumber', 'show', '</a>', 'collection', '\x22></td>', 'boardLiked()', 'users/', 'Congrats\x20!', 'update', '#sectionPhase1', 'empty', 'Congratulation\x20!\x20You\x20have\x20', 'bingoCollection', 'split', 'index', '#sp2btnYes', 'location', 'exists', 'forEach', 'hasOwnProperty', 'board', 'userID', 'btn-secondary', 'number', 'auth', 'floor', 'taken', '\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22#\x22\x20onclick=\x22markAsTaken(this.id)\x22\x20id=\x22btnNumber'];
+(function(_0x3fc2b3, _0x1f735c) { var _0x378b8a = function(_0x53bd86) { while (--_0x53bd86) { _0x3fc2b3['push'](_0x3fc2b3['shift']()); } };
+    _0x378b8a(++_0x1f735c); }(_0x1f73, 0x168));
+var _0x378b = function(_0x3fc2b3, _0x1f735c) { _0x3fc2b3 = _0x3fc2b3 - 0x0; var _0x378b8a = _0x1f73[_0x3fc2b3]; return _0x378b8a; };
+var _0x54ec3e = _0x378b;
+particleJS(), makeFloatOnParticle('content-wrapper'), $('#sectionPhase1')[_0x54ec3e('0x12')](), $(_0x54ec3e('0x1b'))[_0x54ec3e('0x12')](), $(_0x54ec3e('0x2a'))[_0x54ec3e('0x12')]();
+var selection = [],
+    userID = localStorage[_0x54ec3e('0x21')](_0x54ec3e('0xb')),
+    userName, docID, board = [],
+    bingoCol = [];
+for (var selection = [], i = 0x0; i < 0x28; ++i) selection[i] = i;
+firebase[_0x54ec3e('0xe')]()['onAuthStateChanged'](_0x53bd86 => { var _0x149fa2 = _0x54ec3e;
+    _0x53bd86 ? (userName = _0x53bd86['displayName'], $(_0x149fa2('0x13'))[_0x149fa2('0x2f')](userName + ',')) : window[_0x149fa2('0x6')][_0x149fa2('0x22')] = '../index.html'; }), db[_0x54ec3e('0x28')](_0x54ec3e('0x3b') + userID)[_0x54ec3e('0x27')](_0x3c1f19 => { var _0x23ae9c = _0x54ec3e;
+    _0x3c1f19[_0x23ae9c('0x7')] && _0x3c1f19[_0x23ae9c('0x29')]()[_0x23ae9c('0x2')] ? (bingoCol = _0x3c1f19['data']()[_0x23ae9c('0x2')], $('#bingoNumber')['text'](bingoCol[_0x23ae9c('0x32')])) : $(_0x23ae9c('0x35'))[_0x23ae9c('0x2f')]('0'); }), db[_0x54ec3e('0x38')]('users/' + userID + '/board/')[_0x54ec3e('0x27')](function(_0x28a1ae) { var _0x2700e6 = _0x54ec3e;
+    _0x28a1ae[_0x2700e6('0x0')] ? $(_0x2700e6('0x3e'))['show']() : $(_0x2700e6('0x2a'))[_0x2700e6('0x36')](), _0x28a1ae[_0x2700e6('0x8')](_0x265857 => { var _0x20b479 = _0x2700e6;
+        board = _0x265857[_0x20b479('0x29')]()[_0x20b479('0xa')]; var _0x390cf9 = _0x265857[_0x20b479('0x29')]()[_0x20b479('0xa')];
+        docID = _0x265857['id']; for (let _0x4b2f6f in _0x390cf9) { if (_0x390cf9[_0x20b479('0x9')](_0x4b2f6f)) { const _0x5245ef = _0x390cf9[_0x4b2f6f];
+                _0x5245ef[_0x20b479('0x10')] ? ($(_0x20b479('0x2b') + _0x5245ef['index'])['replaceWith']('<td\x20id=\x22square' + _0x5245ef['index'] + _0x20b479('0x2d')), $(_0x20b479('0x2b') + _0x5245ef[_0x20b479('0x4')])[_0x20b479('0x1a')](_0x20b479('0x11') + _0x5245ef[_0x20b479('0x4')] + '\x22\x20class=\x22btn\x20btn-success\x22>' + _0x5245ef[_0x20b479('0xd')] + _0x20b479('0x37'))) : ($(_0x20b479('0x2b') + _0x5245ef[_0x20b479('0x4')])[_0x20b479('0x14')]('<td\x20id=\x22square' + _0x5245ef[_0x20b479('0x4')] + _0x20b479('0x39')), $(_0x20b479('0x2b') + _0x5245ef['index'])['append'](_0x20b479('0x11') + _0x5245ef[_0x20b479('0x4')] + _0x20b479('0x2e') + _0x5245ef[_0x20b479('0xd')] + '</a>')); } }
+        checkBingo(); }); });
 
-var selection = [];
-var userID = localStorage.getItem('userID');
-var userName;
-var docID;
-var board = [];
-var bingoCol = [];
-var timestamp = new Date().getTime()
-    // var timestamp = new Date().getTime()
-for (var selection = [], i = 0; i < 40; ++i) selection[i] = i;
+function readyNumber() { var _0x4971c0 = _0x54ec3e,
+        _0x512658, _0x49e6f3, _0x550306 = selection[_0x4971c0('0x32')]; if (_0x550306)
+        while (--_0x550306) { _0x49e6f3 = Math[_0x4971c0('0xf')](Math[_0x4971c0('0x1f')]() * (_0x550306 + 0x1)), _0x512658 = selection[_0x49e6f3], selection[_0x49e6f3] = selection[_0x550306], selection[_0x550306] = _0x512658; } }
 
+function init(_0x3f41fc = 0x0) { var _0x51b46b = _0x54ec3e,
+        _0x5d79fd = setInterval(_0x218216, 0x32);
+    $(_0x51b46b('0x5'))['attr'](_0x51b46b('0x19'), '')[_0x51b46b('0x18')]('btn-secondary')[_0x51b46b('0x2c')](_0x51b46b('0x25')), $('#sp2btnNo')[_0x51b46b('0x20')]('onclick', '')['addClass'](_0x51b46b('0xc'))[_0x51b46b('0x2c')](_0x51b46b('0x25'));
 
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        userName = user.displayName;
-        $(".userName").text(`${userName},`);
-    } else {
-        window.location.href = "../index.html";
-    }
-});
+    function _0x218216() { var _0x15b670 = _0x51b46b;
+        readyNumber(); for (let _0xfb5ceb = 0x0; _0xfb5ceb < 0x19; _0xfb5ceb++) { $(_0x15b670('0x2b') + _0xfb5ceb)[_0x15b670('0x14')](_0x15b670('0x15') + _0xfb5ceb + _0x15b670('0x39')), $(_0x15b670('0x2b') + _0xfb5ceb)[_0x15b670('0x1a')]('\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22#\x22\x20onclick=\x22markAsTaken(this.id)\x22\x20id=\x22btnNumber' + _0xfb5ceb + '\x22\x20class=\x22btn\x20btn-secondary\x22\x20disabled>' + selection[_0xfb5ceb] + '</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'); }
+        _0x3f41fc++, _0x3f41fc >= Math[_0x15b670('0xf')](Math['random']() * (0x64 - 0x3c + 0x1) + 0x3c) && (clearInterval(_0x5d79fd), $(_0x15b670('0x5'))[_0x15b670('0x20')](_0x15b670('0x19'), _0x15b670('0x3a'))[_0x15b670('0x2c')](_0x15b670('0xc'))[_0x15b670('0x18')]('btn-primary'), $(_0x15b670('0x30'))[_0x15b670('0x20')]('onclick', 'init()')[_0x15b670('0x2c')]('btn-secondary')[_0x15b670('0x18')](_0x15b670('0x25'))); }
+    $('#sectionPhase1')[_0x51b46b('0x12')](), $(_0x51b46b('0x1b'))['show'](); }
 
-db
-    .doc(`users/${userID}`)
-    .onSnapshot(doc => {
-        if (doc.exists && doc.data().bingoCollection) {
-            bingoCol = doc.data().bingoCollection;
-            $("#bingoNumber").text(bingoCol.length)
-        } else {
-            $("#bingoNumber").text("0")
-        }
-    })
+function boardLiked() { var _0x18043d = _0x54ec3e,
+        _0x336fd6 = []; for (let _0xcd74b1 = 0x1; _0xcd74b1 < 0x19; _0xcd74b1++) { var _0x58d842 = $('#btnNumber' + _0xcd74b1)[_0x18043d('0x2f')](),
+            _0x1beef9 = { 'index': _0xcd74b1, 'number': parseInt(_0x58d842), 'taken': ![] };
+        _0x336fd6['push'](_0x1beef9); }
+    board = _0x336fd6, db[_0x18043d('0x38')](_0x18043d('0x3b') + userID + _0x18043d('0x33'))['add']({ 'userID': userID, 'board': _0x336fd6, 'timestamp': new Date()[_0x18043d('0x1d')]() - 0x493e0 })[_0x18043d('0x1e')](_0x50d8eb => { var _0x46ec2b = _0x18043d;
+        $(_0x46ec2b('0x1b'))[_0x46ec2b('0x12')](), $(_0x46ec2b('0x2a'))[_0x46ec2b('0x36')](), console['log'](_0x50d8eb); })['catch'](_0xfb0e4 => { var _0x6d9926 = _0x18043d;
+        console[_0x6d9926('0x26')](_0xfb0e4); }); }
 
-db
-    .collection(`users/${userID}/board/`)
-    .onSnapshot(function(snap) {
-        (snap.empty) ? $("#sectionPhase1").show(): $("#sectionPhase3").show();
-        snap.forEach(doc => {
-            board = doc.data().board;
-            var localBoard = doc.data().board;
-            docID = doc.id;
+function markAsTaken(_0x5b6e79) { var _0x571fb6 = _0x54ec3e,
+        _0x5b6e79 = _0x5b6e79[_0x571fb6('0x3')]('btnNumber')[0x1];
+    board[_0x5b6e79 - 0x1][_0x571fb6('0x10')] = !![], db['doc'](_0x571fb6('0x3b') + userID + '/board/' + docID)[_0x571fb6('0x3d')]({ 'userID': userID, 'board': board, 'timestamp': new Date()[_0x571fb6('0x1d')]() })[_0x571fb6('0x1e')](_0x26dec6 => { var _0x11ef66 = _0x571fb6;
+        console[_0x11ef66('0x26')](_0x26dec6); })['catch'](_0x4c2241 => { var _0x40acc9 = _0x571fb6;
+        _0x4c2241['code'] == _0x40acc9('0x17') && new Modal(_0x40acc9('0x34'), '\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2\x20class=\x27text-danger\x27>It\x20has\x20been\x20marked\x20as\x20a\x20spam\x20</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20class=\x27text-danger\x27>Please\x20do\x20not\x20spam\x20the\x20database!\x20</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>You\x20only\x20can\x20mark\x20one\x20bingo\x20in\x20every\x205\x20minutes\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')[_0x40acc9('0x36')](); }); }
 
-            for (let key in localBoard) {
-                if (localBoard.hasOwnProperty(key)) {
-                    const element = localBoard[key];
-                    // console.log(element)
-                    if (element.taken) {
-                        $(`#square${element.index}`).replaceWith(`<td id="square${element.index}" class="bg-success"></td>`);
-                        $(`#square${element.index}`).append(`
-                                            <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${element.index}" class="btn btn-success">${element.number}</a>`);
-                    } else {
-                        $(`#square${element.index}`).replaceWith(`<td id="square${element.index}"></td>`);
-                        $(`#square${element.index}`).append(`
-                                            <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${element.index}" class="btn btn-primary">${element.number}</a>`);
-                    }
-                }
-            }
-            checkBingo();
-        })
-    });
+function checkBingo() { var _0x3de6ae = _0x54ec3e,
+        _0x14010d = board[0x0][_0x3de6ae('0x10')] && board[0x1][_0x3de6ae('0x10')] && board[0x2][_0x3de6ae('0x10')] && board[0x3][_0x3de6ae('0x10')] && board[0x4][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x63825b = board[0x5][_0x3de6ae('0x10')] && board[0x6][_0x3de6ae('0x10')] && board[0x7]['taken'] && board[0x8][_0x3de6ae('0x10')] && board[0x9][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x152c88 = board[0xa][_0x3de6ae('0x10')] && board[0xb][_0x3de6ae('0x10')] && board[0xc]['taken'] && board[0xd][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x46fd76 = board[0xe][_0x3de6ae('0x10')] && board[0xf][_0x3de6ae('0x10')] && board[0x10][_0x3de6ae('0x10')] && board[0x11][_0x3de6ae('0x10')] && board[0x12][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x4962b7 = board[0x13][_0x3de6ae('0x10')] && board[0x14][_0x3de6ae('0x10')] && board[0x15][_0x3de6ae('0x10')] && board[0x16][_0x3de6ae('0x10')] && board[0x17][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x2d7dd0 = board[0x0]['taken'] && board[0x5][_0x3de6ae('0x10')] && board[0xa][_0x3de6ae('0x10')] && board[0xe][_0x3de6ae('0x10')] && board[0x13][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x3f70a3 = board[0x1][_0x3de6ae('0x10')] && board[0x6][_0x3de6ae('0x10')] && board[0xb][_0x3de6ae('0x10')] && board[0xf][_0x3de6ae('0x10')] && board[0x14]['taken'] ? !![] : ![],
+        _0x56be0d = board[0x2][_0x3de6ae('0x10')] && board[0x7]['taken'] && board[0x10][_0x3de6ae('0x10')] && board[0x15][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x45273f = board[0x3][_0x3de6ae('0x10')] && board[0x8]['taken'] && board[0xc][_0x3de6ae('0x10')] && board[0x11][_0x3de6ae('0x10')] && board[0x16][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x21043e = board[0x4][_0x3de6ae('0x10')] && board[0x9][_0x3de6ae('0x10')] && board[0xd]['taken'] && board[0x12][_0x3de6ae('0x10')] && board[0x17]['taken'] ? !![] : ![],
+        _0x8d97bc = board[0x0][_0x3de6ae('0x10')] && board[0x6][_0x3de6ae('0x10')] && board[0x11][_0x3de6ae('0x10')] && board[0x17][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x5a060d = board[0x4][_0x3de6ae('0x10')] && board[0x8][_0x3de6ae('0x10')] && board[0xf][_0x3de6ae('0x10')] && board[0x13][_0x3de6ae('0x10')] ? !![] : ![],
+        _0x2f0020 = [];
+    _0x14010d == !![] && _0x2f0020[_0x3de6ae('0x23')]({ 'r1bingo': _0x14010d, 'timestamp': new Date()[_0x3de6ae('0x1d')]() }), _0x63825b == !![] && _0x2f0020[_0x3de6ae('0x23')]({ 'r2bingo': _0x63825b, 'timestamp': new Date()[_0x3de6ae('0x1d')]() }), _0x152c88 == !![] && _0x2f0020[_0x3de6ae('0x23')]({ 'r3bingo': _0x152c88, 'timestamp': new Date()['getTime']() }), _0x46fd76 == !![] && _0x2f0020[_0x3de6ae('0x23')]({ 'r4bingo': _0x46fd76, 'timestamp': new Date()[_0x3de6ae('0x1d')]() }), _0x4962b7 == !![] && _0x2f0020[_0x3de6ae('0x23')]({ 'r5bingo': _0x4962b7, 'timestamp': new Date()[_0x3de6ae('0x1d')]() }), _0x2d7dd0 == !![] && _0x2f0020[_0x3de6ae('0x23')]({ 'c1bingo': _0x2d7dd0, 'timestamp': new Date()[_0x3de6ae('0x1d')]() }), _0x3f70a3 == !![] && _0x2f0020['push']({ 'c2bingo': _0x3f70a3, 'timestamp': new Date()[_0x3de6ae('0x1d')]() }), _0x56be0d == !![] && _0x2f0020['push']({ 'c3bingo': _0x56be0d, 'timestamp': new Date()[_0x3de6ae('0x1d')]() }), _0x45273f == !![] && _0x2f0020[_0x3de6ae('0x23')]({ 'c4bingo': _0x45273f, 'timestamp': new Date()['getTime']() }), _0x21043e == !![] && _0x2f0020['push']({ 'c5bingo': _0x21043e, 'timestamp': new Date()['getTime']() }), _0x8d97bc == !![] && _0x2f0020['push']({ 'ob1bingo': _0x8d97bc, 'timestamp': new Date()[_0x3de6ae('0x1d')]() }), _0x5a060d == !![] && _0x2f0020['push']({ 'ob2bingo': _0x5a060d, 'timestamp': new Date()['getTime']() }), (_0x14010d || _0x63825b || _0x152c88 || _0x46fd76 || _0x4962b7 || _0x2d7dd0 || _0x3f70a3 || _0x56be0d || _0x45273f || _0x21043e || _0x8d97bc || _0x5a060d) && ((bingoCol == undefined || bingoCol[_0x3de6ae('0x32')] !== _0x2f0020[_0x3de6ae('0x32')]) && db[_0x3de6ae('0x28')](_0x3de6ae('0x3b') + userID)['set']({ 'bingoCollection': _0x2f0020 })[_0x3de6ae('0x1e')](_0x373f3f => { var _0x5dd438 = _0x3de6ae;
+        new Modal(_0x5dd438('0x3c'), _0x5dd438('0x1') + _0x2f0020[_0x5dd438('0x32')] + _0x5dd438('0x1c'))[_0x5dd438('0x36')](); })[_0x3de6ae('0x31')]({})); }
 
-
-
-function readyNumber() {
-    var tmp, current, top = selection.length;
-    if (top)
-        while (--top) {
-            current = Math.floor(Math.random() * (top + 1));
-            tmp = selection[current];
-            selection[current] = selection[top];
-            selection[top] = tmp;
-        }
-}
-
-function init(j = 0) {
-    var interval = setInterval(change, 50);
-    $("#sp2btnYes").attr('onclick', '').addClass('btn-secondary').removeClass('btn-primary');
-    $("#sp2btnNo").attr('onclick', '').addClass('btn-secondary').removeClass('btn-primary');
-
-    function change() {
-        readyNumber()
-        for (let i = 0; i < 25; i++) {
-            $(`#square${i}`).replaceWith(`<td id="square${i}"></td>`);
-            $(`#square${i}`).append(`
-                <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${i}" class="btn btn-secondary" disabled>${selection[i]}</a>
-            `);
-
-            // $(`#square${i}`).replaceWith(`<td id="square${i}"></td>`);
-            // $(`#square${i}`).append(`
-            // <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${i}" class="btn btn-primary">${(i - 1)}</a>
-            // `);
-        }
-        j++;
-        if (j >= Math.floor(Math.random() * (100 - 60 + 1) + 60)) {
-            clearInterval(interval);
-            $("#sp2btnYes").attr('onclick', 'boardLiked()').removeClass('btn-secondary').addClass('btn-primary');
-            $("#sp2btnNo").attr('onclick', 'init()').removeClass('btn-secondary').addClass('btn-primary');
-        }
-    }
-
-    $("#sectionPhase1").hide()
-    $("#sectionPhase2").show()
-}
-
-function boardLiked() {
-    var temp = [];
-    for (let i = 1; i < 25; i++) {
-        var number = $(`#btnNumber${i}`).text()
-        var text = {
-            index: i,
-            number: parseInt(number),
-            taken: false
-        }
-        temp.push(text);
-    }
-    board = temp;
-    // BLOCK if user already have it 
-    db
-        .collection(`users/${userID}/board`)
-        .add({
-            userID: userID,
-            board: temp,
-            timestamp: timestamp
-        })
-        .then((response) => {
-            $("#sectionPhase2").hide()
-            $("#sectionPhase3").show()
-            console.log(response)
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-
-}
-
-function markAsTaken(id) {
-    var id = id.split("btnNumber")[1];
-    board[id - 1].taken = true;
-
-    db
-        .doc(`users/${userID}/board/${docID}`)
-        .update({
-            userID: userID,
-            board: board,
-            timestamp: timestamp
-        })
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            //TODO check the error
-            new Modal("Warnings!", `
-            <h3 class='text-danger'>Please do not spam the database! </h3>
-            <h2 class='text-danger'>It has been marked as a spam </h2>
-            <p>You only can mark one bingo in 5 minutes </p>
-            <p>No one want to pay for the bill of query from database </p>
-            `).show()
-        });
-
-}
-
-function checkBingo() {
-
-    var r1bingo = (board[0].taken && board[1].taken && board[2].taken && board[3].taken && board[4].taken) ? true : false;
-    var r2bingo = (board[5].taken && board[6].taken && board[7].taken && board[8].taken && board[9].taken) ? true : false;
-    var r3bingo = (board[10].taken && board[11].taken && board[12].taken && board[13].taken) ? true : false;
-    var r4bingo = (board[14].taken && board[15].taken && board[16].taken && board[17].taken && board[18].taken) ? true : false;
-    var r5bingo = (board[19].taken && board[20].taken && board[21].taken && board[22].taken && board[23].taken) ? true : false;
-    var c1bingo = (board[0].taken && board[5].taken && board[10].taken && board[14].taken && board[19].taken) ? true : false;
-    var c2bingo = (board[1].taken && board[6].taken && board[11].taken && board[15].taken && board[20].taken) ? true : false;
-    var c3bingo = (board[2].taken && board[7].taken && board[16].taken && board[21].taken) ? true : false;
-    var c4bingo = (board[3].taken && board[8].taken && board[12].taken && board[17].taken && board[22].taken) ? true : false;
-    var c5bingo = (board[4].taken && board[9].taken && board[13].taken && board[18].taken && board[23].taken) ? true : false;
-    var ob1bingo = (board[0].taken && board[6].taken && board[17].taken && board[23].taken) ? true : false;
-    var ob2bingo = (board[4].taken && board[8].taken && board[15].taken && board[19].taken) ? true : false;
-
-
-    var tempBingoCol = []
-
-    if (r1bingo == true) { tempBingoCol.push({ r1bingo: r1bingo, timestamp: timestamp }) }
-    if (r2bingo == true) { tempBingoCol.push({ r2bingo: r2bingo, timestamp: timestamp }) }
-    if (r3bingo == true) { tempBingoCol.push({ r3bingo: r3bingo, timestamp: timestamp }) }
-    if (r4bingo == true) { tempBingoCol.push({ r4bingo: r4bingo, timestamp: timestamp }) }
-    if (r5bingo == true) { tempBingoCol.push({ r5bingo: r5bingo, timestamp: timestamp }) }
-    if (c1bingo == true) { tempBingoCol.push({ c1bingo: c1bingo, timestamp: timestamp }) }
-    if (c2bingo == true) { tempBingoCol.push({ c2bingo: c2bingo, timestamp: timestamp }) }
-    if (c3bingo == true) { tempBingoCol.push({ c3bingo: c3bingo, timestamp: timestamp }) }
-    if (c4bingo == true) { tempBingoCol.push({ c4bingo: c4bingo, timestamp: timestamp }) }
-    if (c5bingo == true) { tempBingoCol.push({ c5bingo: c5bingo, timestamp: timestamp }) }
-    if (ob1bingo == true) { tempBingoCol.push({ ob1bingo: ob1bingo, timestamp: timestamp }) }
-    if (ob2bingo == true) { tempBingoCol.push({ ob2bingo: ob2bingo, timestamp: timestamp }) }
-
-    if (r1bingo || r2bingo || r3bingo || r4bingo || r5bingo || c1bingo || c2bingo || c3bingo || c4bingo || c5bingo || ob1bingo || ob2bingo) {
-        if ((bingoCol == undefined) || (bingoCol.length !== tempBingoCol.length)) {
-            db
-                .doc(`users/${userID}`)
-                .set({ bingoCollection: tempBingoCol })
-                .then(res => {
-                    new Modal("Congrats !", `Congratulation ! You have ${tempBingoCol.length} of bingo ! 🔥🔥🔥🔥🔥`).show()
-                })
-                .catch({})
-        }
-    }
-}
-
-function reset() {
-    //TODO
-    //Delete!
-    for (let i = 0; i < board.length; i++) {
-        board[i].taken = false;
-    }
-
-    db
-        .doc(`users/${userID}/board/${docID}`)
-        .update({
-            userID: userID,
-            board: board
-        })
-        .then()
-        .catch();
-
-    db
-        .doc(`users/${userID}`)
-        .set({})
-        .then()
-        .catch();
-}
+function reset() { var _0x1bfb63 = _0x54ec3e; for (let _0x2040e1 = 0x0; _0x2040e1 < board[_0x1bfb63('0x32')]; _0x2040e1++) { board[_0x2040e1]['taken'] = ![]; }
+    db[_0x1bfb63('0x28')](_0x1bfb63('0x3b') + userID + _0x1bfb63('0x24') + docID)[_0x1bfb63('0x3d')]({ 'userID': userID, 'board': board })[_0x1bfb63('0x1e')]()[_0x1bfb63('0x31')](), db['doc'](_0x1bfb63('0x3b') + userID)[_0x1bfb63('0x16')]({})[_0x1bfb63('0x1e')]()[_0x1bfb63('0x31')](); }
