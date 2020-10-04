@@ -1,37 +1,24 @@
-particleJS();
-makeFloatOnParticle("authContainer");
-
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-var uiConfig = {
-    callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-            return true;
-        },
-        uiShown: function() {
-            $("#loader").hide();
-        }
-    },
-    'credentialHelper': firebaseui.auth.CredentialHelper.NONE,
-    signInFlow: 'popup',
-    signInSuccessUrl: 'app/index.html',
-    signInOptions: [{
-        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    }],
-    //tosUrl: 'About/tnc.html',
-    //privacyPolicyUrl: 'About/Privacy_Policy.html',
-};
-ui.start('#authContainer', uiConfig);
-
-if (ui.isPendingRedirect()) {
-    ui.start('#authContainer', uiConfig);
-}
-// This can also be done via:
-if ((firebase.auth().isSignInWithEmailLink(window.location.href))) {
-    ui.start('#authContainer', uiConfig);
-}
-
-firebase.auth().onAuthStateChanged(user => {
-    if (user) { localStorage.setItem('userID', user.uid);
-        window.location.href = "app/index.html"; }
-});
+var _0x4ed7 = ['info', 'start', 'PROVIDER_ID', 'uid', 'isSignInWithEmailLink', 'bind', 'hide', '{}.constructor(\x22return\x20this\x22)(\x20)', 'popup', 'console', 'log', 'location', 'return\x20(function()\x20', 'userID', 'setItem', 'CredentialHelper', 'AuthUI', 'EmailAuthProvider', 'trace', 'error', '__proto__', 'toString', 'href', 'NONE', '#authContainer', 'onAuthStateChanged', 'exception', 'table', 'auth', 'prototype', 'app/index.html', 'isPendingRedirect'];
+(function(_0x285e44, _0x4ed7a2) { var _0x487970 = function(_0x560b8a) { while (--_0x560b8a) { _0x285e44['push'](_0x285e44['shift']()); } };
+    _0x487970(++_0x4ed7a2); }(_0x4ed7, 0x142));
+var _0x4879 = function(_0x285e44, _0x4ed7a2) { _0x285e44 = _0x285e44 - 0x0; var _0x487970 = _0x4ed7[_0x285e44]; return _0x487970; };
+var _0x5d00d1 = _0x4879,
+    _0x25c2ba = function() { var _0x351371 = !![]; return function(_0x4d5f97, _0x45b3e6) { var _0x1c059d = _0x351371 ? function() { if (_0x45b3e6) { var _0x125d82 = _0x45b3e6['apply'](_0x4d5f97, arguments); return _0x45b3e6 = null, _0x125d82; } } : function() {}; return _0x351371 = ![], _0x1c059d; }; }(),
+    _0x5bb507 = _0x25c2ba(this, function() { var _0xe0b52f = _0x4879,
+            _0x1f0026 = function() { var _0x2772b3 = _0x4879,
+                    _0x36a71e; try { _0x36a71e = Function(_0x2772b3('0xa') + _0x2772b3('0x5') + ');')(); } catch (_0x500f7e) { _0x36a71e = window; } return _0x36a71e; },
+            _0x230e49 = _0x1f0026(),
+            _0x27b720 = _0x230e49[_0xe0b52f('0x7')] = _0x230e49[_0xe0b52f('0x7')] || {},
+            _0x363dfb = [_0xe0b52f('0x8'), 'warn', _0xe0b52f('0x1e'), _0xe0b52f('0x11'), _0xe0b52f('0x18'), _0xe0b52f('0x19'), _0xe0b52f('0x10')]; for (var _0x224bed = 0x0; _0x224bed < _0x363dfb['length']; _0x224bed++) { var _0x592371 = _0x25c2ba['constructor'][_0xe0b52f('0x1b')][_0xe0b52f('0x3')](_0x25c2ba),
+                _0x46de73 = _0x363dfb[_0x224bed],
+                _0x3d9607 = _0x27b720[_0x46de73] || _0x592371;
+            _0x592371[_0xe0b52f('0x12')] = _0x25c2ba[_0xe0b52f('0x3')](_0x25c2ba), _0x592371[_0xe0b52f('0x13')] = _0x3d9607[_0xe0b52f('0x13')][_0xe0b52f('0x3')](_0x3d9607), _0x27b720[_0x46de73] = _0x592371; } });
+_0x5bb507(), particleJS(), makeFloatOnParticle('authContainer');
+var ui = new firebaseui[(_0x5d00d1('0x1a'))][(_0x5d00d1('0xe'))](firebase['auth']()),
+    uiConfig = { 'callbacks': { 'signInSuccessWithAuthResult': function(_0x21568c, _0x270b9c) { return !![]; }, 'uiShown': function() { var _0xda5cfe = _0x5d00d1;
+                $('#loader')[_0xda5cfe('0x4')](); } }, 'credentialHelper': firebaseui[_0x5d00d1('0x1a')][_0x5d00d1('0xd')][_0x5d00d1('0x15')], 'signInFlow': _0x5d00d1('0x6'), 'signInSuccessUrl': _0x5d00d1('0x1c'), 'signInOptions': [{ 'provider': firebase['auth'][_0x5d00d1('0xf')][_0x5d00d1('0x0')] }] };
+ui['start'](_0x5d00d1('0x16'), uiConfig);
+ui[_0x5d00d1('0x1d')]() && ui[_0x5d00d1('0x1f')](_0x5d00d1('0x16'), uiConfig);
+firebase[_0x5d00d1('0x1a')]()[_0x5d00d1('0x2')](window[_0x5d00d1('0x9')][_0x5d00d1('0x14')]) && ui[_0x5d00d1('0x1f')](_0x5d00d1('0x16'), uiConfig);
+firebase['auth']()[_0x5d00d1('0x17')](_0x5d0685 => { var _0x374590 = _0x5d00d1;
+    _0x5d0685 && (localStorage[_0x374590('0xc')](_0x374590('0xb'), _0x5d0685[_0x374590('0x1')]), window[_0x374590('0x9')][_0x374590('0x14')] = _0x374590('0x1c')); });

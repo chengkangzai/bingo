@@ -1,11 +1,26 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /user/{userID}/{document=**} {
+    match /users/{userID} {
       allow read :if isLoggedIn();
       allow write: if isOwner(userID);
     }
+    
+    match /users/{userID}/board/{docId} {
+      
+      allow read :if isOwner(userID);
+			allow create,delete : if isOwner(userID);      
+      allow update: if isOwner(userID) && noSpam();
+            
 
+      
+      function noSpam(){
+        let dbTime = get(/databases/$(database)/documents/users/$(request.auth.uid)/board/$(docId)).data.timestamp;
+        let requestTime= request.resource.data.timestamp;
+        //return requestTime > (dbTime+100000) //1.6 minute
+        return requestTime > (dbTime+60000) // 1 minute 
+      }
+		}
 
     
     function isOwner(userID){
@@ -15,6 +30,8 @@ service cloud.firestore {
     function isLoggedIn(){
       return request.auth.uid != null;
     }
+    
+    
   }
   
 }

@@ -5,14 +5,28 @@ $("#sectionPhase1").hide();
 $("#sectionPhase2").hide();
 $("#sectionPhase3").hide();
 
-var selection = [];
+var selection = [
+    "Professional", "ipsum", "dolor", "sit", "amet",
+    "consectetur", "adipisicing", "elit", "Minus", "modi",
+
+    "itaque", "fuga", "incidunt", "ea", "voluptatem",
+    "nisi", "lorem", "at", "est", "quas",
+
+    "asperiores", "ratione", "facere", "velit", "earum",
+    "saepe", "veritatis", "nobis", "dignissimos", "nesciunt.",
+
+    "One", "Two", "Three", "Four", "Five",
+    "Some", "Random", "Word", "Fox", "Ant",
+
+    "Six", "Seven", "Eight", "Nine", "Ten",
+    "Eleven", "Twice", "Thirteen", "Fourteen", "Fifteen",
+];
 var userID = localStorage.getItem('userID');
 var userName;
 var docID;
 var board = [];
 var bingoCol = [];
 
-for (var selection = [], i = 0; i < 40; ++i) selection[i] = i;
 
 
 firebase.auth().onAuthStateChanged(user => {
@@ -38,7 +52,25 @@ db
 db
     .collection(`users/${userID}/board/`)
     .onSnapshot(function(snap) {
-        (snap.empty) ? $("#sectionPhase1").show(): $("#sectionPhase3").show();
+        if (snap.empty) {
+            $("#sectionPhase1").show()
+            new Modal("Instruction", `
+            <h3>Rule </h3>
+            <p>Hi ${userName} , As you using this software for first time. The rule shall be introduced</p>
+            <ul>
+                <li>Pay your attention to the presentation and listen carefully.</li>
+                <li>Mark the word spoken by presenter by clicking the word below</li>
+                <li>This game will be a prove of attendance of yours </li>
+                <li>Word listed in the table will not necessary speak by presenter</li>
+                <li>Any 5 marked word that link together in the 5x5 table below count as 1 bingo (the more the better)</li>
+                <li>You can only Mark/Unmark 1 word in 1 minute </li>
+                <li><b>IMPORTANT!</b>  Enjoy yourself in this presentation</li>
+            </ul>
+            `).show()
+        } else {
+            $("#sectionPhase3").show();
+        }
+
         snap.forEach(doc => {
             board = doc.data().board;
             var localBoard = doc.data().board;
@@ -51,7 +83,7 @@ db
                     if (element.taken) {
                         $(`#square${element.index}`).replaceWith(`<td id="square${element.index}" class="bg-success"></td>`);
                         $(`#square${element.index}`).append(`
-                                            <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${element.index}" class="btn btn-success">${element.number}</a>`);
+                                            <a href="#" onclick="markAsNotTaken(this.id)" id="btnNumber${element.index}" class="btn btn-success">${element.number}</a>`);
                     } else {
                         $(`#square${element.index}`).replaceWith(`<td id="square${element.index}"></td>`);
                         $(`#square${element.index}`).append(`
@@ -88,11 +120,6 @@ function init(j = 0) {
             $(`#square${i}`).append(`
                 <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${i}" class="btn btn-secondary" disabled>${selection[i]}</a>
             `);
-
-            // $(`#square${i}`).replaceWith(`<td id="square${i}"></td>`);
-            // $(`#square${i}`).append(`
-            // <a href="#" onclick="markAsTaken(this.id)" id="btnNumber${i}" class="btn btn-primary">${(i - 1)}</a>
-            // `);
         }
         j++;
         if (j >= Math.floor(Math.random() * (100 - 60 + 1) + 60)) {
@@ -112,7 +139,7 @@ function boardLiked() {
         var number = $(`#btnNumber${i}`).text()
         var text = {
             index: i,
-            number: parseInt(number),
+            number: number,
             taken: false
         }
         temp.push(text);
@@ -124,7 +151,7 @@ function boardLiked() {
         .add({
             userID: userID,
             board: temp,
-            timestamp: new Date().getTime() - 300000
+            timestamp: new Date().getTime() - 60
         })
         .then((response) => {
             $("#sectionPhase2").hide()
@@ -139,7 +166,34 @@ function boardLiked() {
 
 function markAsTaken(id) {
     var id = id.split("btnNumber")[1];
+    if (board[id - 1].taken) return false;
     board[id - 1].taken = true;
+
+    db
+        .doc(`users/${userID}/board/${docID}`)
+        .update({
+            userID: userID,
+            board: board,
+            timestamp: new Date().getTime() - 60000
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            if (error.code == "permission-denied") {
+                new Modal("Warnings!", `
+            <h2 class='text-danger'>It has been marked as a spam </h2>
+            <h3 class='text-danger'>Please do not spam the database! </h3>
+            <p>You only can mark one bingo in every 1 minutes </p>
+            `).show()
+            }
+        });
+}
+
+function markAsNotTaken(id) {
+    var id = id.split("btnNumber")[1];
+    if (board[id - 1].taken == false) return false;
+    board[id - 1].taken = false;
 
     db
         .doc(`users/${userID}/board/${docID}`)
@@ -153,7 +207,6 @@ function markAsTaken(id) {
         })
         .catch(error => {
             if (error.code == "permission-denied") {
-                //TODO check the error
                 new Modal("Warnings!", `
             <h2 class='text-danger'>It has been marked as a spam </h2>
             <h3 class='text-danger'>Please do not spam the database! </h3>
@@ -161,8 +214,8 @@ function markAsTaken(id) {
             `).show()
             }
         });
-
 }
+
 
 function checkBingo() {
 
@@ -179,27 +232,115 @@ function checkBingo() {
     var ob1bingo = (board[0].taken && board[6].taken && board[17].taken && board[23].taken) ? true : false;
     var ob2bingo = (board[4].taken && board[8].taken && board[15].taken && board[19].taken) ? true : false;
 
-
     var tempBingoCol = []
 
-    if (r1bingo == true) { tempBingoCol.push({ r1bingo: r1bingo, timestamp: new Date().getTime() }) }
-    if (r2bingo == true) { tempBingoCol.push({ r2bingo: r2bingo, timestamp: new Date().getTime() }) }
-    if (r3bingo == true) { tempBingoCol.push({ r3bingo: r3bingo, timestamp: new Date().getTime() }) }
-    if (r4bingo == true) { tempBingoCol.push({ r4bingo: r4bingo, timestamp: new Date().getTime() }) }
-    if (r5bingo == true) { tempBingoCol.push({ r5bingo: r5bingo, timestamp: new Date().getTime() }) }
-    if (c1bingo == true) { tempBingoCol.push({ c1bingo: c1bingo, timestamp: new Date().getTime() }) }
-    if (c2bingo == true) { tempBingoCol.push({ c2bingo: c2bingo, timestamp: new Date().getTime() }) }
-    if (c3bingo == true) { tempBingoCol.push({ c3bingo: c3bingo, timestamp: new Date().getTime() }) }
-    if (c4bingo == true) { tempBingoCol.push({ c4bingo: c4bingo, timestamp: new Date().getTime() }) }
-    if (c5bingo == true) { tempBingoCol.push({ c5bingo: c5bingo, timestamp: new Date().getTime() }) }
-    if (ob1bingo == true) { tempBingoCol.push({ ob1bingo: ob1bingo, timestamp: new Date().getTime() }) }
-    if (ob2bingo == true) { tempBingoCol.push({ ob2bingo: ob2bingo, timestamp: new Date().getTime() }) }
+    if (r1bingo) { tempBingoCol.push({ r1bingo: r1bingo, timestamp: new Date().getTime(), board: getTakenBoard("r1bingo") }) }
+    if (r2bingo) { tempBingoCol.push({ r2bingo: r2bingo, timestamp: new Date().getTime(), board: getTakenBoard("r2bingo") }) }
+    if (r3bingo) { tempBingoCol.push({ r3bingo: r3bingo, timestamp: new Date().getTime(), board: getTakenBoard("r3bingo") }) }
+    if (r4bingo) { tempBingoCol.push({ r4bingo: r4bingo, timestamp: new Date().getTime(), board: getTakenBoard("r4bingo") }) }
+    if (r5bingo) { tempBingoCol.push({ r5bingo: r5bingo, timestamp: new Date().getTime(), board: getTakenBoard("r5bingo") }) }
+    if (c1bingo) { tempBingoCol.push({ c1bingo: c1bingo, timestamp: new Date().getTime(), board: getTakenBoard("c1bingo") }) }
+    if (c2bingo) { tempBingoCol.push({ c2bingo: c2bingo, timestamp: new Date().getTime(), board: getTakenBoard("c2bingo") }) }
+    if (c3bingo) { tempBingoCol.push({ c3bingo: c3bingo, timestamp: new Date().getTime(), board: getTakenBoard("c3bingo") }) }
+    if (c4bingo) { tempBingoCol.push({ c4bingo: c4bingo, timestamp: new Date().getTime(), board: getTakenBoard("c4bingo") }) }
+    if (c5bingo) { tempBingoCol.push({ c5bingo: c5bingo, timestamp: new Date().getTime(), board: getTakenBoard("c5bingo") }) }
+    if (ob1bingo) { tempBingoCol.push({ ob1bingo: ob1bingo, timestamp: new Date().getTime(), board: getTakenBoard("ob1bingo") }) }
+    if (ob2bingo) { tempBingoCol.push({ ob2bingo: ob2bingo, timestamp: new Date().getTime(), board: getTakenBoard("ob2bingo") }) }
+
+
+
+    function getTakenBoard(q) {
+        array = [];
+        if (q == "r1bingo") {
+            array.push(board[0].number);
+            array.push(board[1].number);
+            array.push(board[2].number);
+            array.push(board[3].number);
+            array.push(board[4].number);
+        }
+        if (q == "r2bingo") {
+            array.push(board[5].number);
+            array.push(board[6].number);
+            array.push(board[7].number);
+            array.push(board[8].number);
+            array.push(board[9].number);
+        }
+        if (q == "r3bingo") {
+            array.push(board[10].number);
+            array.push(board[11].number);
+            array.push(board[12].number);
+            array.push(board[13].number);
+        }
+        if (q == "r4bingo") {
+            array.push(board[14].number);
+            array.push(board[15].number);
+            array.push(board[16].number);
+            array.push(board[17].number);
+            array.push(board[18].number);
+        }
+        if (q == "r5bingo") {
+            array.push(board[19].number);
+            array.push(board[20].number);
+            array.push(board[21].number);
+            array.push(board[22].number);
+            array.push(board[23].number);
+        }
+        if (q == "c1bingo") {
+            array.push(board[0].number);
+            array.push(board[5].number);
+            array.push(board[10].number);
+            array.push(board[14].number);
+            array.push(board[19].number);
+        }
+        if (q == "c2bingo") {
+            array.push(board[1].number);
+            array.push(board[6].number);
+            array.push(board[11].number);
+            array.push(board[15].number);
+            array.push(board[20].number);
+        }
+        if (q == "c3bingo") {
+            array.push(board[2].number);
+            array.push(board[7].number);
+            array.push(board[16].number);
+            array.push(board[21].number);
+        }
+        if (q == "c4bingo") {
+            array.push(board[3].number);
+            array.push(board[8].number);
+            array.push(board[12].number);
+            array.push(board[17].number);
+            array.push(board[22].number);
+        }
+        if (q == "c5bingo") {
+            array.push(board[4].number);
+            array.push(board[9].number);
+            array.push(board[13].number);
+            array.push(board[18].number);
+            array.push(board[23].number);
+        }
+        if (q == "ob1bingo") {
+            array.push(board[0].number);
+            array.push(board[6].number);
+            array.push(board[17].number);
+            array.push(board[23].number);
+        }
+        if (q == "ob2bingo") {
+            array.push(board[4].number);
+            array.push(board[8].number);
+            array.push(board[15].number);
+            array.push(board[19].number);
+
+        }
+        console.log(array)
+        return array;
+    }
 
     if (r1bingo || r2bingo || r3bingo || r4bingo || r5bingo || c1bingo || c2bingo || c3bingo || c4bingo || c5bingo || ob1bingo || ob2bingo) {
         if ((bingoCol == undefined) || (bingoCol.length !== tempBingoCol.length)) {
             db
                 .doc(`users/${userID}`)
-                .set({ bingoCollection: tempBingoCol })
+                .set({ bingoCollection: tempBingoCol, user: userName })
                 .then(res => {
                     new Modal("Congrats !", `Congratulation ! You have ${tempBingoCol.length} of bingo ! 🔥🔥🔥🔥🔥`).show()
                 })
@@ -217,10 +358,7 @@ function reset() {
 
     db
         .doc(`users/${userID}/board/${docID}`)
-        .update({
-            userID: userID,
-            board: board
-        })
+        .delete()
         .then()
         .catch();
 

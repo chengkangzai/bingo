@@ -10,12 +10,13 @@
     <script defer src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/6.3.1/firebase-firestore.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/6.3.1/firebase-storage.js"></script>
-    <script defer src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+
     <link rel="stylesheet" href="../asset/css/particlejs.css" />
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -27,7 +28,7 @@
 
     <div id="content-wrapper">
         <a href="#" onclick="logout()" class="btn btn-primary m-3" style="float:right;">Logout</a>
-        <div style="height: 300px;" class="text-white mx-auto text-center">
+        <div style="height: 30%;" class="text-white mx-auto text-center">
             <div class="" style="height: 100px;"></div>
             <div id="sectionPhase1">
                 <h3> Hi! <span class="userName"></span> Are you ready ? </h3>
@@ -45,58 +46,59 @@
             </div>
         </div>
 
-        <div style="background-color: aliceblue;" class="col-lg-8 mx-auto col-md-12" id="table">
-            <table class="table table-white table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th>B</th>
-                        <th>I</th>
-                        <th>N</th>
-                        <th>G</th>
-                        <th>O</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="square1"></td>
-                        <td id="square2"></td>
-                        <td id="square3"></td>
-                        <td id="square4"></td>
-                        <td id="square5"></td>
-                    </tr>
-                    <tr>
-                        <td id="square6"></td>
-                        <td id="square7"></td>
-                        <td id="square8"></td>
-                        <td id="square9"></td>
-                        <td id="square10"></td>
-                    </tr>
-                    <tr>
-                        <td id="square11"></td>
-                        <td id="square12"></td>
-                        <td id="free">Free</td>
-                        <td id="square13"></td>
-                        <td id="square14"></td>
-                    </tr>
-                    <tr>
-                        <td id="square15"></td>
-                        <td id="square16"></td>
-                        <td id="square17"></td>
-                        <td id="square18"></td>
-                        <td id="square19"></td>
-                    </tr>
-                    <tr>
-                        <td id="square20"></td>
-                        <td id="square21"></td>
-                        <td id="square22"></td>
-                        <td id="square23"></td>
-                        <td id="square24"></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="mt-2">
+            <div style="background-color: aliceblue;" class="col-lg-8 mx-auto col-md-12 table-responsive">
+                <table class="table  table-white table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">B</th>
+                            <th style="width: 20%;">I</th>
+                            <th style="width: 20%;">N</th>
+                            <th style="width: 20%;">G</th>
+                            <th style="width: 20%;">O</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="square1"></td>
+                            <td id="square2"></td>
+                            <td id="square3"></td>
+                            <td id="square4"></td>
+                            <td id="square5"></td>
+                        </tr>
+                        <tr>
+                            <td id="square6"></td>
+                            <td id="square7"></td>
+                            <td id="square8"></td>
+                            <td id="square9"></td>
+                            <td id="square10"></td>
+                        </tr>
+                        <tr>
+                            <td id="square11"></td>
+                            <td id="square12"></td>
+                            <td id="free">Free</td>
+                            <td id="square13"></td>
+                            <td id="square14"></td>
+                        </tr>
+                        <tr>
+                            <td id="square15"></td>
+                            <td id="square16"></td>
+                            <td id="square17"></td>
+                            <td id="square18"></td>
+                            <td id="square19"></td>
+                        </tr>
+                        <tr>
+                            <td id="square20"></td>
+                            <td id="square21"></td>
+                            <td id="square22"></td>
+                            <td id="square23"></td>
+                            <td id="square24"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
     <script defer src="../asset/js/fb.js"></script>
     <script src="../asset/js/particle.js"></script>
     <script src="../asset/js/modal.js"></script>
