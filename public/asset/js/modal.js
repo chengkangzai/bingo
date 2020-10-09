@@ -5,7 +5,7 @@ class Modal {
         this.title = title;
         this.message = message;
         this.mode = mode;
-        this.id = Math.floor(Math.random() * 100);
+        this.id = Math.floor(Math.random() * 100000000);
         this.dom = () => {
             return `
             <div class="modal fade" id="modal-${this.id}" role="dialog" aria-labelledby="${this.title}" >
