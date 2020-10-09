@@ -5,21 +5,28 @@ $("#sectionPhase1").hide();
 $("#sectionPhase2").hide();
 $("#sectionPhase3").hide();
 
+$("#btnVideoModal").on('click', () => { videoModal() })
+$("#btnReadyModal").on('click', () => { readyModal() })
+$("#btnInit1").on('click', () => { init(50) })
+$("#sp2btnNo").on('click', () => { init() })
+$("#sp2btnYes").on('click', () => { boardLiked() })
+
+
 var selection = [
-    "Professional", "ipsum", "dolor", "sit", "amet",
-    "consectetur", "adipisicing", "elit", "Minus", "modi",
+    "Cocktail Party", "Pink Noise", "Intention", "Space and time", "Bouncing",
+    "Sonority", "Recording", "Tiring", "Soundscape", "Impatient",
 
-    "itaque", "fuga", "incidunt", "ea", "voluptatem",
-    "nisi", "lorem", "at", "est", "quas",
+    "Desensitize", "Conscious listening ", "Silence", "The mixer", "Savoring",
+    "Mundane Sound", "Active", "Acronym", "RASA", "Spiritually",
 
-    "asperiores", "ratione", "facere", "velit", "earum",
-    "saepe", "veritatis", "nobis", "dignissimos", "nesciunt.",
+    "Interruption", "Negotiation", "Distraction", "Boardroom Battle", "Conflict",
+    "Naturally", "Influence", "Connect", "Get to Yes", "Focus",
 
-    "One", "Two", "Three", "Four", "Five",
-    "Some", "Random", "Word", "Fox", "Ant",
+    "Emotion", "Legal Dispute", "Elimination", "Freedom", "Businessman",
+    "Settlement", "Experience", "Humbling", "Noise and Distraction ", "Listen to ourself",
 
-    "Six", "Seven", "Eight", "Nine", "Ten",
-    "Eleven", "Twice", "Thirteen", "Fourteen", "Fifteen",
+    "Moment of quiet", "Fear and anxiety", "Mediation work", "Broken relationship", "Senseless war",
+    "Listening Revolution", "Age of Listening", "Divorce", "Contagions", "Chain Reaction",
 ];
 var userID = localStorage.getItem('userID');
 var userName;
@@ -54,19 +61,7 @@ db
     .onSnapshot(function(snap) {
         if (snap.empty) {
             $("#sectionPhase1").show()
-            new Modal("Instruction", `
-            <h3>Rule </h3>
-            <p>Hi ${userName} , As you using this software for first time. The rule shall be introduced</p>
-            <ul>
-                <li>Pay your attention to the presentation and listen carefully.</li>
-                <li>Mark the word spoken by presenter by clicking the word below</li>
-                <li>This game will be a prove of attendance of yours </li>
-                <li>Word listed in the table will not necessary speak by presenter</li>
-                <li>Any 5 marked word that link together in the 5x5 table below count as 1 bingo (the more the better)</li>
-                <li>You can only Mark/Unmark 1 word in 1 minute </li>
-                <li><b>IMPORTANT!</b>  Enjoy yourself in this presentation</li>
-            </ul>
-            `).show()
+            readyModal();
         } else {
             $("#sectionPhase3").show();
         }
@@ -95,7 +90,49 @@ db
         })
     });
 
+function readyModal() {
+    new Modal("Instruction", `
+            <h3>Rule </h3>
+            <p>Hi ${userName} , As you might using this software for first time. The rule shall be introduced</p>
+            <ul>
+                <li>Pay your attention to the video and listen carefully.</li>
+                <li>Mark the word spoken/shown by presenter by clicking the word below</li>
+                <li>This game will be a prove of attendance of yours </li>
+                <li>Word listed in the table will not necessary speak by presenter</li>
+                <li>Any 5 marked word that link together in the 5x5 table below count as 1 bingo (the more the better)</li>
+                <li>Please do not spam the database as its paid services </li>
+                <li><b>IMPORTANT!</b> Enjoy yourself in this activity</li>
+            </ul>
+            `).show()
+}
 
+function videoModal() {
+    new Modal("Video", `
+    <div class="card">
+    <a href="https://youtu.be/cSohjlYQI2A" target="_blank" title="open in new Window">
+        <img src="https://i3.ytimg.com/vi/cSohjlYQI2A/hqdefault.jpg" class="card-img-top" alt="thumbnail">
+    </a>
+    <div class="card-body">
+        <h5 class="card-title">5 ways to listen better | Julian Treasure</h5>
+        <p class="card-text">7 minute 50 second</p>
+        <a href="https://youtu.be/cSohjlYQI2A" class="btn btn-primary" target="_blank" title="open in new Window">Go Youtube</a>
+    </div>
+    </div>
+
+    <div class="card">
+    <a href="https://youtu.be/saXfavo1OQo" target="_blank" title="open in new Window">
+        <img src="http://i3.ytimg.com/vi/saXfavo1OQo/hqdefault.jpg" class="card-img-top" alt="thumbnail">
+    </a>
+    <div class="card-body">
+        <h5 class="card-title">The power of listening | William Ury | TEDxSanDiego
+        </h5>
+        <p class="card-text">15 minute 40 second</p>
+        <a href="https://youtu.be/saXfavo1OQo" class="btn btn-primary" target="_blank" title="open in new Window">Go Youtube</a>
+    </div>
+    </div>
+    
+            `).show()
+}
 
 function readyNumber() {
     var tmp, current, top = selection.length;
@@ -151,16 +188,14 @@ function boardLiked() {
         .add({
             userID: userID,
             board: temp,
-            timestamp: new Date().getTime() - 60
+            timestamp: new Date().getTime() - 120000
         })
         .then((response) => {
             $("#sectionPhase2").hide()
             $("#sectionPhase3").show()
             console.log(response)
         })
-        .catch((error) => {
-            console.log(error)
-        });
+        .catch();
 
 }
 
@@ -176,9 +211,7 @@ function markAsTaken(id) {
             board: board,
             timestamp: new Date().getTime() - 60000
         })
-        .then(response => {
-            console.log(response)
-        })
+        .then()
         .catch(error => {
             if (error.code == "permission-denied") {
                 new Modal("Warnings!", `
@@ -202,9 +235,7 @@ function markAsNotTaken(id) {
             board: board,
             timestamp: new Date().getTime()
         })
-        .then(response => {
-            console.log(response)
-        })
+        .then()
         .catch(error => {
             if (error.code == "permission-denied") {
                 new Modal("Warnings!", `
@@ -332,7 +363,6 @@ function checkBingo() {
             array.push(board[19].number);
 
         }
-        console.log(array)
         return array;
     }
 
