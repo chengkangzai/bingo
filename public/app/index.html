@@ -27,19 +27,24 @@
 <body>
 
     <div id="content-wrapper">
-        <a href="#" onclick="logout()" class="btn btn-primary m-3" style="float:right;">Logout</a>
+        <div class="text-white">
+            <a onclick="logout()" class="btn btn-primary m-3" style="float:right;">Logout</a>
+            <a id="btnVideoModal" class="btn btn-info m-3" style="float:right;">Video</a>
+            <a id="btnReadyModal" class="btn btn-info m-3" style="float:right;">Information</a>
+        </div>
+
         <div style="height: 30%;" class="text-white mx-auto text-center">
             <div class="" style="height: 100px;"></div>
             <div id="sectionPhase1">
                 <h3> Hi! <span class="userName"></span> Are you ready ? </h3>
-                <a class="btn btn-primary" onclick="init(50)"> YES </a>
+                <a class="btn btn-primary" id="btnInit1"> YES </a>
             </div>
             <div id="sectionPhase2">
                 <h3>Choose Your Board ! </h3>
                 <h4>Do you like this board ? </h4>
                 <h5>Click 'YES' to confirm your board or 'Reshuffle' to Reshuffle the board</h5>
-                <a class="btn btn-primary" onclick="boardLiked()" id="sp2btnYes"> YES </a>
-                <a class="btn btn-primary" onclick="init()" id="sp2btnNo"> Reshuffle </a>
+                <a class="btn btn-primary" id="sp2btnYes"> YES </a>
+                <a class="btn btn-primary" id="sp2btnNo"> Reshuffle </a>
             </div>
             <div id="sectionPhase3" class="mx-auto col-lg-6 col-md-8">
                 <p>Hey! <span class="userName"></span> You Currently Have <span id="bingoNumber"></span> Bingo !</p>
