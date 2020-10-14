@@ -100,7 +100,6 @@ function readyModal() {
                 <li>This game will be a prove of attendance of yours </li>
                 <li>Word listed in the table will not necessary speak by presenter</li>
                 <li>Any 5 marked word that link together in the 5x5 table below count as 1 bingo (the more the better)</li>
-                <li>Please do not spam the database as its paid services </li>
                 <li><b>IMPORTANT!</b> Enjoy yourself in this activity</li>
             </ul>
             `).show()
@@ -377,24 +376,4 @@ function checkBingo() {
                 .catch({})
         }
     }
-}
-
-function reset() {
-    //TODO
-    //Delete!
-    for (let i = 0; i < board.length; i++) {
-        board[i].taken = false;
-    }
-
-    db
-        .doc(`users/${userID}/board/${docID}`)
-        .delete()
-        .then()
-        .catch();
-
-    db
-        .doc(`users/${userID}`)
-        .set({})
-        .then()
-        .catch();
 }
