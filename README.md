@@ -7,7 +7,7 @@ Basic Firebase Auth is implemented to record down which user is registered and c
 Do Whatever you want, modify it, change it ... whatever credit me if possible :3
 
 # Screenshot
-![Image of Bingo](https://github.com/chengkangzai/bingo/picture.png)
+![Image of Bingo](https://github.com/chengkangzai/bingo/blob/master/picture.png?raw=true)
 
 ## What is offered in the system:
 1. Bingo layout 5x5 
